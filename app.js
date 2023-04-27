@@ -57,7 +57,7 @@ let min = 2;
 let interval;
 
 start.addEventListener(`click`, () => {
-  interval = setInterval(setTimer, 100);
+  interval = setInterval(setTimer, 1000);
 });
 
 reset.addEventListener(`click`, () => {
