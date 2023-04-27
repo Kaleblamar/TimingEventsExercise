@@ -43,16 +43,19 @@ stop.addEventListener(`click`, () => {
 const countDown = document.querySelector(`#countdown`);
 const timer = document.createElement(`p`);
 const start = document.createElement(`button`);
+const stopBtn = document.createElement(`button`);
+const reset = document.createElement(`button`);
 start.textContent = `START`;
-document.body.appendChild(start);
+stopBtn.textContent = `STOP`;
+reset.textContent = `RESET`;
+document.body.append(start, stopBtn, reset);
 
 timer.innerHTML = `<span class="minute">2</span>:<span class="second">00</span>`;
 countDown.append(timer);
 
 let minute = document.querySelector(`.minute`);
 let second = document.querySelector(`.second`);
-let reset = document.querySelector(`#reset`);
-let sec = 60 - 1;
+let sec = 60;
 let min = 2;
 let interval;
 
@@ -62,7 +65,7 @@ start.addEventListener(`click`, () => {
 
 reset.addEventListener(`click`, () => {
   clearInterval(interval);
-  sec = 60 - 1;
+  sec = 60;
   min = 2;
   timer.innerHTML = `<span class="minute">2</span>:<span class="second">00</span>`;
   minute = document.querySelector(`.minute`);
@@ -71,14 +74,15 @@ reset.addEventListener(`click`, () => {
   minute.innerText = `2`;
 });
 
-function setTimer() {
-  minute.innerText = min;
-  second.innerText = sec;
+stopBtn.addEventListener(`click`, () => {
+  clearInterval(interval);
+});
 
+function setTimer() {
+  sec--;
   if (sec === 59) {
     min--;
   }
-  sec--;
 
   if (sec === 0) {
     sec = 60;
@@ -97,6 +101,8 @@ function setTimer() {
     clearInterval(interval);
     timer.innerHTML = `TIME IS UP`;
   }
+  minute.innerText = min;
+  second.innerText = sec;
 }
 
 // When finished, create a repository in the "TimingEventsExercise" Folder as well as on GitHub. Add and commit everything in the TimingEventsExercise folder and push it up to your GitHub repository. Then paste the link to your GitHub repository page in the form in google classroom.
