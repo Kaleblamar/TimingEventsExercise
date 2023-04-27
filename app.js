@@ -59,10 +59,12 @@ let sec = 60;
 let min = 2;
 let interval;
 
+//start btn, interval
 start.addEventListener(`click`, () => {
   interval = setInterval(setTimer, 1000);
 });
 
+//reset btn
 reset.addEventListener(`click`, () => {
   clearInterval(interval);
   sec = 60;
@@ -73,15 +75,22 @@ reset.addEventListener(`click`, () => {
   second.innerText = `00`;
   minute.innerText = `2`;
 });
-
+//stop btn
 stopBtn.addEventListener(`click`, () => {
   clearInterval(interval);
 });
 
+//timer function
 function setTimer() {
   sec--;
   if (sec === 59) {
     min--;
+  }
+  if (sec > 9) {
+    second.innerText = sec;
+  }
+  if (sec < 10) {
+    second.innerText = `0` + sec;
   }
 
   if (sec === 0) {
@@ -91,18 +100,13 @@ function setTimer() {
   if (min === 0) {
     min = 0;
   }
-  if (sec <= 9) {
-    second.innerText = `0` + sec;
-  }
-  if (sec > 9) {
-    second.innerText = sec;
-  }
+
   if (min === 0 && sec === 1) {
     clearInterval(interval);
-    timer.innerHTML = `TIME IS UP`;
+    timer.innerHTML = `TIME IS UP!`;
   }
+
   minute.innerText = min;
-  second.innerText = sec;
 }
 
 // When finished, create a repository in the "TimingEventsExercise" Folder as well as on GitHub. Add and commit everything in the TimingEventsExercise folder and push it up to your GitHub repository. Then paste the link to your GitHub repository page in the form in google classroom.
